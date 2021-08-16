@@ -1,10 +1,13 @@
 package com.lti.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lti.model.Product;
 import com.lti.model.Supplier;
 import com.lti.model.User;
 import com.lti.repository.SupplierRepository;
@@ -27,4 +30,11 @@ public class SupplierServiceImpl implements SupplierService {
 		return supplierRepository.findSupplierByEmailAndPassword(email, password);
 	} 
 
+
+	@Override
+	public Supplier displaySupplierDetails(int supplierid) {
+		// TODO Auto-generated method stub
+		return supplierRepository.findById(supplierid).get();
+
+	}
 }

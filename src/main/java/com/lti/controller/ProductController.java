@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,13 +47,19 @@ public class ProductController {
 	
 	@GetMapping("/products/supplier/{supplier_id}")
 	public List<Product> getProductBySupplierId(@PathVariable(value = "supplier_id") int supplier_id) {
-		return productService.getSupplier(supplier_id);
+		return productService.displayBySupplier(supplier_id);
 	}
+	
 	@GetMapping("/supplier/{supplier_id}")
 	public Supplier getSuplierById(@PathVariable(value = "supplier_id") int supplier_id) {
 		return supplierService.findSupplierById(supplier_id);
 	}
-	
+		
+	@DeleteMapping("/products/deleteproduct/{prodid}")
+	public boolean deleteProduct(@PathVariable(value="prodid") int prodid){
+			return productService.deleteProduct(prodid);
+	}
+		
 	@GetMapping("/products/all")
 	public List<Product> getAllProduct(){
 		return productService.getAllProduct();
@@ -120,4 +127,24 @@ public class ProductController {
 	public boolean addProduct(@RequestBody Product product) {
 			return productService.addProducts(product);
 		}
+	
+	@PutMapping("/products/editproduct")
+	public boolean editproduct(@RequestBody Product product){
+		return productService.editproduct(product);
+		
+	}
+
+	@GetMapping("/products/updateproduct/{prodid}")
+	public Product updateProduct(@PathVariable(value="prodid") int prodid){
+			return productService.updateProduct(prodid);
+			
+		}
+
+//supplier details for profile
+
+	@GetMapping("/products/displaysupplier/{supplierid}")
+	public Supplier supplierDetails(@PathVariable(value="supplierid") int supplierid){
+		return supplierService.displaySupplierDetails(supplierid);
+		
+	}
 }

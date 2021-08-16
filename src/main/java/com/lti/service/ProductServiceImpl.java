@@ -63,14 +63,40 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 
-	@Override
-	public List<Product> getSupplier(int supplier_id) {
-		return prodRepo.findBySupplierSupplierid(supplier_id);
-	}
-
 
 	@Override
 	public boolean addProducts(Product product) {
+		prodRepo.save(product);
+		return true;
+
+	}
+	
+	@Override
+	public List<Product> displayBySupplier(int supplierid) {
+		return prodRepo.findBySupplierSupplierid(supplierid);
+	}
+	@Override
+	public boolean deleteProduct(int prodid) {
+//		prodRepo.delete(product);
+		Product newp=prodRepo.findById(prodid).get();
+//		newp=product;
+		prodRepo.delete(newp);
+		return true;
+	}
+
+
+	
+	@Override
+	public Product updateProduct(int prodid) {
+//		Product newp=prodRepo.findById(prodid).get();
+//		prodRepo.save(newp);
+		return prodRepo.findById(prodid).get();
+	}
+
+
+
+	@Override
+	public boolean editproduct(Product product) {
 		prodRepo.save(product);
 		return true;
 
