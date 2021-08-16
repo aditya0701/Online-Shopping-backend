@@ -11,6 +11,7 @@ import com.lti.model.Product;
 import com.lti.model.Supplier;
 import com.lti.repository.ImageRepository;
 import com.lti.repository.ProductRepository;
+import com.lti.repository.SupplierRepository;
 
 @Service
 @Transactional
@@ -19,6 +20,8 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	ProductRepository prodRepo;
 
+	@Autowired
+	SupplierRepository supplierRepository;
 	
 	@Override
 	public Product findProduct(int prodid) {
@@ -63,5 +66,13 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getSupplier(int supplier_id) {
 		return prodRepo.findBySupplierSupplierid(supplier_id);
+	}
+
+
+	@Override
+	public boolean addProducts(Product product) {
+		prodRepo.save(product);
+		return true;
+
 	}
 }

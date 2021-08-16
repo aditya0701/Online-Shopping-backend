@@ -13,6 +13,6 @@ public interface ProductService {
 	public List<Product> findProductByBrand(String brand);
 	public List<Product> getAllProduct();
 	public List<Product> findProductByPrice(int lower, int upper);
-	
+	public boolean addProducts(Product product);
 	public List<Product> getSupplier(int supplier_id);
 }

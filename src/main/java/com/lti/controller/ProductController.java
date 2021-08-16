@@ -7,7 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -66,11 +68,6 @@ public class ProductController {
 		return productService.findProductByBrand(brand);
 	}
 	
-	@GetMapping("/products/{prodid1}/{prodid2}/{prodid3}/{prodid4}")
-	public List<Product> getProductById(@PathVariable(value="prodid1") int prodid1,@PathVariable(value="prodid2") int prodid2,@PathVariable(value="prodid3") int prodid3,@PathVariable(value="prodid4") int prodid4){
-		return productService.compareProducts(prodid1,prodid2,prodid3,prodid4);
-		
-	}
 	
 	@GetMapping("/productsbyname/{name}")
 	public List<Product> findByName(@PathVariable (value= "name") String name) {
@@ -117,4 +114,10 @@ public class ProductController {
 		System.out.println(lower+" "+upper);
 		return productService.findProductByPrice(Integer.parseInt(lower), Integer.parseInt(upper));
 	}
+	
+	
+	@PostMapping("/products/addproduct")
+	public boolean addProduct(@RequestBody Product product) {
+			return productService.addProducts(product);
+		}
 }

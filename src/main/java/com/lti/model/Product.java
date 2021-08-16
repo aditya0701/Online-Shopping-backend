@@ -20,8 +20,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Product {
 	
 	@Id
+	@GeneratedValue
 	@Column(name="product_id")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int prodid;
 	@Column(name="product_name")
 	private String prodName;
@@ -36,7 +36,7 @@ public class Product {
 	@Column(name="brand")
 	private String brand;
 	
-	
+	private String url;
 	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "addedProduct", cascade = CascadeType.ALL)
@@ -47,7 +47,7 @@ public class Product {
 //	private List<OrderDetailTable> orderDetailTables;
 
 	//bi-directional many-to-one association to RetailerTable
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="supplier_id")
 	private Supplier supplier;
 	
@@ -114,16 +114,30 @@ public class Product {
 //	public void setImage(List<Image> image) {
 //		this.image = image;
 //	}
-	public Product(int prodid, String prodName, int price, String category, String description, int inStock,
-			String brand) {
-		super();
-		this.prodid = prodid;
-		this.prodName = prodName;
-		this.price = price;
-		this.category = category;
-		this.description = description;
-		this.inStock = inStock;
-		this.brand = brand;
+
+	public void assignSupplier(Supplier supplier) {
+		this.supplier=supplier;
+		
+	}
+	public Product(int prodid, String prodName, int price, String category, String description, int inStock, String brand,
+		String url, List<Cart> cart, Supplier supplier) {
+	super();
+	this.prodid = prodid;
+	this.prodName = prodName;
+	this.price = price;
+	this.category = category;
+	this.description = description;
+	this.inStock = inStock;
+	this.brand = brand;
+	this.url = url;
+	this.cart = cart;
+	this.supplier = supplier;
+}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
 	

@@ -1,26 +1,33 @@
 package com.lti.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="Supplier")
 public class Supplier {
 	
 	@Id
+	@GeneratedValue
 	@Column(name="supplier_id")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int supplierid;
 	private String supplier_name;
 	private String phone;
 	private String email;
 	private String password;
 	
-
+//	@JsonIgnore
+//	@OneToMany(mappedBy = "supplier")
+//	private Set<Product> products;
 
 	public int getSupplierid() {
 		return supplierid;
@@ -54,6 +61,7 @@ public class Supplier {
 	}
 	
 	
+
 	public Supplier(int supplierid, String supplier_name, String phone, String email, String password) {
 		super();
 		this.supplierid = supplierid;
@@ -61,10 +69,17 @@ public class Supplier {
 		this.phone = phone;
 		this.email = email;
 		this.password = password;
+//		this.products = products;
 	}
 	public Supplier() {
 		super();
 	}
+//	public Set<Product> getProducts() {
+//		return products;
+//	}
+//	public void setProducts(Set<Product> products) {
+//		this.products = products;
+//	}
 	
 	
 }
