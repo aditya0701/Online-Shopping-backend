@@ -25,31 +25,26 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> findAll() {
-		// TODO Auto-generated method stub
 		return userrepo.findAll();
 	}
 
 	@Override
 	public User Save(User user) {
-		// TODO Auto-generated method stub
 		return userrepo.save(user);
 	}
 
 	@Override
 	public User findUserById(int uid) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public User UpdateUser(User user) {  //This is for Update User...
-		// TODO Auto-generated method stub
 		return userrepo.save(user);
 	}
 
 	@Override
 	public User fetchUserByEmailAndPassword(String uemail, String upassword) {
-		// TODO Auto-generated method stub
 		return userrepo.findUserByEmailAndPassword(uemail, upassword);
 	} 
 

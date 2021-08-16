@@ -123,9 +123,9 @@ public class ProductController {
 	}
 	
 	
-	@PostMapping("/products/addproduct")
-	public boolean addProduct(@RequestBody Product product) {
-			return productService.addProducts(product);
+	@PostMapping("/products/addproduct/{supplierId}")
+	public boolean addProduct(@RequestBody Product product,@PathVariable(value="supplierid") int supplierid) {
+			return productService.addProducts(product,supplierid);
 		}
 	
 	@PutMapping("/products/editproduct")

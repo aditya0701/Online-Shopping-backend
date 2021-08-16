@@ -13,9 +13,9 @@ public interface ProductService {
 	public List<Product> findProductByBrand(String brand);
 	public List<Product> getAllProduct();
 	public List<Product> findProductByPrice(int lower, int upper);
-	public boolean addProducts(Product product);
 	public boolean editproduct(Product product);
 	public Product updateProduct(int prodid);
 	public boolean deleteProduct(int prodid);
 	public List<Product> displayBySupplier(int supplierid);
+	boolean addProducts(Product product, int supplierId);
 }

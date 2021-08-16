@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="Supplier")
+@Table(name="Supplier_table")
 public class Supplier {
 	
 	@Id

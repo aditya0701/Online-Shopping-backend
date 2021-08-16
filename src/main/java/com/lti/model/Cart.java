@@ -19,10 +19,8 @@ import javax.persistence.Table;
 public class Cart {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue
 	private int cart_id;
-
-	private int quantity;
 
 	//bi-directional many-to-one association to ProductTable
 	@ManyToMany( cascade = CascadeType.ALL)
@@ -42,12 +40,11 @@ public class Cart {
 	}
 
 
-	public Cart(int cart_id, List<Product> addedProduct, User user, int quantity) {
+	public Cart(int cart_id, List<Product> addedProduct, User user) {
 		super();
 		this.cart_id = cart_id;
 		this.addedProduct = addedProduct;
 		this.user = user;
-		this.quantity = quantity;
 	}
 
 
@@ -69,15 +66,6 @@ public class Cart {
 		this.user = user;
 	}
 
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-
 	public int getCart_id() {
 		return cart_id;
 	}
@@ -95,7 +83,6 @@ public class Cart {
 			System.out.println("Product Already exists");
 		}
 	}
-
 
 	public void deleteFromCart(Product product) {
 		if (addedProduct.contains(product))

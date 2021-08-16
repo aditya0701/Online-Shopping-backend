@@ -62,13 +62,12 @@ public class ProductServiceImpl implements ProductService {
 		return prodRepo.findByBrand(brand);
 	}
 
-
-
 	@Override
-	public boolean addProducts(Product product) {
+	public boolean addProducts(Product product,int supplierId) {
+		Supplier supplier = supplierRepository.findById(supplierId).get();
+		product.assignSupplier(supplier);
 		prodRepo.save(product);
 		return true;
-
 	}
 	
 	@Override
